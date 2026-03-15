@@ -1,5 +1,6 @@
-import Sidebar from "./Sidebar"
-import Topbar from "./Topbar"
+import Sidebar from "./Sidebar";
+import Topbar from "./Topbar";
+import React from "react";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -14,5 +15,5 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </main>
       </div>
     </div>
-  )
+  );
 }
