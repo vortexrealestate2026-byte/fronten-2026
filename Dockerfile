@@ -2,15 +2,14 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-COPY package.json package-lock.json ./
-RUN npm install
+COPY frontend/package.json frontend/package-lock.json ./frontend/
+RUN cd frontend && npm install
 
-COPY . .
+COPY frontend ./frontend
 
-RUN npm run build
+RUN cd frontend && npm run build
 
 EXPOSE 8080
-
 ENV PORT=8080
 
-CMD ["npm", "run", "preview", "--", "--port", "8080", "--host"]
+CMD ["npm", "run", "preview", "--prefix", "frontend", "--", "--host", "--port", "8080"]
