@@ -2,14 +2,19 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-COPY frontend/package.json frontend/package-lock.json ./frontend/
-RUN cd frontend && npm install
+# Copy package files from ROOT
+COPY package.json package-lock.json ./
+RUN npm install
 
-COPY frontend ./frontend
+# Copy the rest of the project
+COPY . .
 
-RUN cd frontend && npm run build
+# Build Vite app
+RUN npm run build
 
+# Expose the port your platform expects
 EXPOSE 8080
 ENV PORT=8080
 
-CMD ["npm", "run", "preview", "--prefix", "frontend", "--", "--host", "--port", "8080"]
+# Run Vite preview on the correct port + host
+CMD ["npm", "run", "preview", "--", "--host", "--port", "8080"]
