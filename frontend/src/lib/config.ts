@@ -1,2 +1,4 @@
+// src/lib/config.ts
+
 export const API_BASE_URL =
-  import.meta.env.VITE_API_URL || "http://localhost:8000"
+  process.env.NEXT_PUBLIC_API_URL || "https://vortexai-backend-production.up.railway.app"
