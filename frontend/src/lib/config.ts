@@ -1,2 +1,3 @@
 export const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL || "https://api-vortexai-production.up.railway.app"
+  import.meta.env.VITE_API_URL ||
+  "https://api-vortexai-production.up.railway.app"
