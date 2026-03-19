@@ -1,24 +1,9 @@
 import { Routes, Route } from "react-router-dom";
-
-function Dashboard() {
-  return <h2>Dashboard Page</h2>;
-}
-
-function Deals() {
-  return <h2>Deals Page</h2>;
-}
-
-function Properties() {
-  return <h2>Properties Page</h2>;
-}
-
-function Buyers() {
-  return <h2>Buyers Page</h2>;
-}
-
-function Settings() {
-  return <h2>Settings Page</h2>;
-}
+import Dashboard from "./src/pages/Dashboard";
+import Deals from "./src/pages/Deals";
+import Properties from "./src/pages/Properties";
+import Buyers from "./src/pages/Buyers";
+import Settings from "./src/pages/Settings";
 
 export default function AppRouter() {
   return (
