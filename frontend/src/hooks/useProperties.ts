@@ -1,17 +1,11 @@
-import { useEffect, useState } from "react"
+import { useState, useEffect } from "react"
 import apiClient from "../lib/apiClient"
 
 export interface Property {
-  id: string
+  id: number
   address: string
-  city: string
-  state: string
   price: number
-  beds?: number
-  baths?: number
-  sqft?: number
-  lat?: number
-  lng?: number
+  status: string
 }
 
 export function useProperties() {
@@ -19,21 +13,11 @@ export function useProperties() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    async function fetchProperties() {
-      try {
-        const res = await apiClient.get("/properties")
-        setProperties(res.data)
-      } catch (err) {
-        console.error("Failed to load properties", err)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    fetchProperties()
+    apiClient.get("/api/properties")
+      .then((res) => setProperties(res.data))
+      .catch(() => setProperties([]))
+      .finally(() => setLoading(false))
   }, [])
 
   return { properties, loading }
 }
-
-export default useProperties
