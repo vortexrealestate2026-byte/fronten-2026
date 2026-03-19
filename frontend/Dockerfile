@@ -8,12 +8,12 @@ RUN npm run build
 FROM caddy:alpine
 COPY --from=build /app/dist /app/dist
 COPY Caddyfile /etc/caddy/Caddyfile
-EXPOSE 80
+EXPOSE 8080
 ```
 
-**`Caddyfile`** (new file in repo root):
+**`Caddyfile`:**
 ```
-:80 {
+:8080 {
     root * /app/dist
     encode gzip
     try_files {path} /index.html
