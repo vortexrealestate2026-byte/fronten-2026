@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <title>Vortex AI - Real Estate Platform</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
+<script type="module" src="/src/main.tsx"></script>
+```
+
+After Vite builds, `main.tsx` becomes `dist/assets/index-xxxxx.js`. The `index.html` in `dist/` should automatically reference the compiled JS. But if Caddy is serving the wrong folder this breaks.
+
+Go to your build logs and look for this line:
+```
+✓ built in X.XXs
