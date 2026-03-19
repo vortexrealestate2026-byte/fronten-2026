@@ -1,20 +1,21 @@
-FROM node:18-alpine
-
+FROM node:18-alpine AS build
 WORKDIR /app
-
-# Copy package files from ROOT
 COPY package.json package-lock.json ./
 RUN npm install
-
-# Copy the rest of the project
 COPY . .
-
-# Build Vite app
 RUN npm run build
 
-# Expose the port your platform expects
-EXPOSE 8080
-ENV PORT=8080
+FROM caddy:alpine
+COPY --from=build /app/dist /app/dist
+COPY Caddyfile /etc/caddy/Caddyfile
+EXPOSE 80
+```
 
-# Run Vite preview on the correct port + host
-CMD ["npm", "run", "preview", "--", "--host", "--port", "8080"]
+**`Caddyfile`** (new file in repo root):
+```
+:80 {
+    root * /app/dist
+    encode gzip
+    try_files {path} /index.html
+    file_server
+}
