@@ -14,15 +14,3 @@ if (rootElement) {
     </React.StrictMode>
   );
 }
-```
-
-So the final correct structure is:
-```
-frontend/
-├── index.html          ← src="/src/main.tsx"
-├── src/
-│   ├── main.tsx        ← imports ./router and ./styles/globals.css
-│   ├── router.tsx      ← imports ./pages/...
-│   ├── styles/
-│   │   └── globals.css
-│   └── pages/
